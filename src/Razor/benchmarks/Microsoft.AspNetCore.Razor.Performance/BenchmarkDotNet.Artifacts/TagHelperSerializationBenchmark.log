@@ -1,0 +1,418 @@
+// ***** BenchmarkRunner: Start   *****
+// Found benchmarks:
+//   TagHelperSerializationBenchmark.'Razor TagHelper Roundtrip Serialization': Job-MDDNRO(Toolchain=InProcessToolchain, RunStrategy=Throughput)
+//   TagHelperSerializationBenchmark.'Razor TagHelper Serialization': Job-MDDNRO(Toolchain=InProcessToolchain, RunStrategy=Throughput)
+//   TagHelperSerializationBenchmark.'Razor TagHelper Deserialization': Job-MDDNRO(Toolchain=InProcessToolchain, RunStrategy=Throughput)
+
+// Validating benchmarks:
+// ***** Building 3 benchmark(s) in Parallel: Start   *****
+// ***** Done, took 00:00:00 (0.03 sec)   *****
+// **************************
+// Benchmark: TagHelperSerializationBenchmark.'Razor TagHelper Roundtrip Serialization': Job-MDDNRO(Toolchain=InProcessToolchain, RunStrategy=Throughput)
+// *** Execute ***
+// Launch: 1 / 1
+
+// Benchmark Process Environment Information:
+// Runtime=.NET Core 5.0.0-preview.6.20305.6 (CoreCLR 5.0.20.30506, CoreFX 5.0.20.30506), 64bit RyuJIT
+// GC=Concurrent Server
+// Job: Job-MDDNRO(Toolchain=InProcessToolchain, RunStrategy=Throughput)
+
+Pilot  1: 16 op, 274076200.00 ns, 17.1298 ms/op
+Pilot  2: 32 op, 460602600.00 ns, 14.3938 ms/op
+Pilot  3: 64 op, 894551800.00 ns, 13.9774 ms/op
+
+IdleWarmup  1: 64 op, 2500.00 ns, 39.0625 ns/op
+IdleWarmup  2: 64 op, 800.00 ns, 12.5000 ns/op
+IdleWarmup  3: 64 op, 900.00 ns, 14.0625 ns/op
+IdleWarmup  4: 64 op, 800.00 ns, 12.5000 ns/op
+IdleWarmup  5: 64 op, 1900.00 ns, 29.6875 ns/op
+IdleWarmup  6: 64 op, 1900.00 ns, 29.6875 ns/op
+
+IdleTarget  1: 64 op, 900.00 ns, 14.0625 ns/op
+IdleTarget  2: 64 op, 900.00 ns, 14.0625 ns/op
+IdleTarget  3: 64 op, 1500.00 ns, 23.4375 ns/op
+IdleTarget  4: 64 op, 1900.00 ns, 29.6875 ns/op
+IdleTarget  5: 64 op, 900.00 ns, 14.0625 ns/op
+IdleTarget  6: 64 op, 1800.00 ns, 28.1250 ns/op
+IdleTarget  7: 64 op, 2100.00 ns, 32.8125 ns/op
+IdleTarget  8: 64 op, 2200.00 ns, 34.3750 ns/op
+IdleTarget  9: 64 op, 1000.00 ns, 15.6250 ns/op
+IdleTarget 10: 64 op, 700.00 ns, 10.9375 ns/op
+IdleTarget 11: 64 op, 2000.00 ns, 31.2500 ns/op
+IdleTarget 12: 64 op, 1800.00 ns, 28.1250 ns/op
+IdleTarget 13: 64 op, 800.00 ns, 12.5000 ns/op
+IdleTarget 14: 64 op, 1600.00 ns, 25.0000 ns/op
+IdleTarget 15: 64 op, 1800.00 ns, 28.1250 ns/op
+IdleTarget 16: 64 op, 1200.00 ns, 18.7500 ns/op
+IdleTarget 17: 64 op, 2000.00 ns, 31.2500 ns/op
+IdleTarget 18: 64 op, 1200.00 ns, 18.7500 ns/op
+IdleTarget 19: 64 op, 1200.00 ns, 18.7500 ns/op
+IdleTarget 20: 64 op, 1200.00 ns, 18.7500 ns/op
+
+MainWarmup  1: 64 op, 906765900.00 ns, 14.1682 ms/op
+MainWarmup  2: 64 op, 879162300.00 ns, 13.7369 ms/op
+MainWarmup  3: 64 op, 871830900.00 ns, 13.6224 ms/op
+MainWarmup  4: 64 op, 877762400.00 ns, 13.7150 ms/op
+MainWarmup  5: 64 op, 870810500.00 ns, 13.6064 ms/op
+MainWarmup  6: 64 op, 879647000.00 ns, 13.7445 ms/op
+MainWarmup  7: 64 op, 910769300.00 ns, 14.2308 ms/op
+MainWarmup  8: 64 op, 876014400.00 ns, 13.6877 ms/op
+
+MainTarget  1: 64 op, 908163000.00 ns, 14.1900 ms/op
+MainTarget  2: 64 op, 894308000.00 ns, 13.9736 ms/op
+MainTarget  3: 64 op, 873952300.00 ns, 13.6555 ms/op
+MainTarget  4: 64 op, 883017800.00 ns, 13.7972 ms/op
+MainTarget  5: 64 op, 883873900.00 ns, 13.8105 ms/op
+MainTarget  6: 64 op, 898642600.00 ns, 14.0413 ms/op
+MainTarget  7: 64 op, 887352000.00 ns, 13.8649 ms/op
+MainTarget  8: 64 op, 876876000.00 ns, 13.7012 ms/op
+MainTarget  9: 64 op, 889964300.00 ns, 13.9057 ms/op
+MainTarget 10: 64 op, 898212800.00 ns, 14.0346 ms/op
+MainTarget 11: 64 op, 899731200.00 ns, 14.0583 ms/op
+MainTarget 12: 64 op, 903979100.00 ns, 14.1247 ms/op
+MainTarget 13: 64 op, 883579200.00 ns, 13.8059 ms/op
+MainTarget 14: 64 op, 871807500.00 ns, 13.6220 ms/op
+MainTarget 15: 64 op, 876059700.00 ns, 13.6884 ms/op
+
+Result  1: 64 op, 908161565.00 ns, 14.1900 ms/op
+Result  2: 64 op, 894306565.00 ns, 13.9735 ms/op
+Result  3: 64 op, 873950865.00 ns, 13.6555 ms/op
+Result  4: 64 op, 883016365.00 ns, 13.7971 ms/op
+Result  5: 64 op, 883872465.00 ns, 13.8105 ms/op
+Result  6: 64 op, 898641165.00 ns, 14.0413 ms/op
+Result  7: 64 op, 887350565.00 ns, 13.8649 ms/op
+Result  8: 64 op, 876874565.00 ns, 13.7012 ms/op
+Result  9: 64 op, 889962865.00 ns, 13.9057 ms/op
+Result 10: 64 op, 898211365.00 ns, 14.0346 ms/op
+Result 11: 64 op, 899729765.00 ns, 14.0583 ms/op
+Result 12: 64 op, 903977665.00 ns, 14.1247 ms/op
+Result 13: 64 op, 883577765.00 ns, 13.8059 ms/op
+Result 14: 64 op, 871806065.00 ns, 13.6220 ms/op
+Result 15: 64 op, 876058265.00 ns, 13.6884 ms/op
+GC:  10 6 2 715167096 64
+
+
+Mean = 13.8849 ms, StdErr = 0.0463 ms (0.33%); N = 15, StdDev = 0.1792 ms
+Min = 13.6220 ms, Q1 = 13.7012 ms, Median = 13.8649 ms, Q3 = 14.0413 ms, Max = 14.1900 ms
+IQR = 0.3401 ms, LowerFence = 13.1910 ms, UpperFence = 14.5514 ms
+ConfidenceInterval = [13.6933 ms; 14.0765 ms] (CI 99.9%), Margin = 0.1916 ms (1.38% of Mean)
+Skewness = 0.11, Kurtosis = 1.57
+
+
+// **************************
+// Benchmark: TagHelperSerializationBenchmark.'Razor TagHelper Serialization': Job-MDDNRO(Toolchain=InProcessToolchain, RunStrategy=Throughput)
+// *** Execute ***
+// Launch: 1 / 1
+
+// Benchmark Process Environment Information:
+// Runtime=.NET Core 5.0.0-preview.6.20305.6 (CoreCLR 5.0.20.30506, CoreFX 5.0.20.30506), 64bit RyuJIT
+// GC=Concurrent Server
+// Job: Job-MDDNRO(Toolchain=InProcessToolchain, RunStrategy=Throughput)
+
+Pilot  1: 16 op, 38344200.00 ns, 2.3965 ms/op
+Pilot  2: 32 op, 89675600.00 ns, 2.8024 ms/op
+Pilot  3: 64 op, 179782300.00 ns, 2.8091 ms/op
+Pilot  4: 128 op, 328250000.00 ns, 2.5645 ms/op
+Pilot  5: 256 op, 743429900.00 ns, 2.9040 ms/op
+
+IdleWarmup  1: 256 op, 2900.00 ns, 11.3281 ns/op
+IdleWarmup  2: 256 op, 1100.00 ns, 4.2969 ns/op
+IdleWarmup  3: 256 op, 2300.00 ns, 8.9844 ns/op
+IdleWarmup  4: 256 op, 2000.00 ns, 7.8125 ns/op
+IdleWarmup  5: 256 op, 2000.00 ns, 7.8125 ns/op
+IdleWarmup  6: 256 op, 3000.00 ns, 11.7188 ns/op
+
+IdleTarget  1: 256 op, 1100.00 ns, 4.2969 ns/op
+IdleTarget  2: 256 op, 2400.00 ns, 9.3750 ns/op
+IdleTarget  3: 256 op, 2800.00 ns, 10.9375 ns/op
+IdleTarget  4: 256 op, 1000.00 ns, 3.9062 ns/op
+IdleTarget  5: 256 op, 1400.00 ns, 5.4688 ns/op
+IdleTarget  6: 256 op, 2300.00 ns, 8.9844 ns/op
+IdleTarget  7: 256 op, 2400.00 ns, 9.3750 ns/op
+IdleTarget  8: 256 op, 2000.00 ns, 7.8125 ns/op
+IdleTarget  9: 256 op, 2500.00 ns, 9.7656 ns/op
+IdleTarget 10: 256 op, 2300.00 ns, 8.9844 ns/op
+IdleTarget 11: 256 op, 2000.00 ns, 7.8125 ns/op
+IdleTarget 12: 256 op, 1000.00 ns, 3.9062 ns/op
+IdleTarget 13: 256 op, 1000.00 ns, 3.9062 ns/op
+IdleTarget 14: 256 op, 1300.00 ns, 5.0781 ns/op
+IdleTarget 15: 256 op, 1000.00 ns, 3.9062 ns/op
+IdleTarget 16: 256 op, 2300.00 ns, 8.9844 ns/op
+IdleTarget 17: 256 op, 2300.00 ns, 8.9844 ns/op
+IdleTarget 18: 256 op, 1100.00 ns, 4.2969 ns/op
+IdleTarget 19: 256 op, 1900.00 ns, 7.4219 ns/op
+IdleTarget 20: 256 op, 2500.00 ns, 9.7656 ns/op
+
+MainWarmup  1: 256 op, 731491000.00 ns, 2.8574 ms/op
+MainWarmup  2: 256 op, 711032800.00 ns, 2.7775 ms/op
+MainWarmup  3: 256 op, 700043600.00 ns, 2.7345 ms/op
+MainWarmup  4: 256 op, 683078100.00 ns, 2.6683 ms/op
+MainWarmup  5: 256 op, 766438800.00 ns, 2.9939 ms/op
+MainWarmup  6: 256 op, 705141200.00 ns, 2.7545 ms/op
+MainWarmup  7: 256 op, 686859600.00 ns, 2.6830 ms/op
+MainWarmup  8: 256 op, 698943100.00 ns, 2.7302 ms/op
+MainWarmup  9: 256 op, 713103300.00 ns, 2.7856 ms/op
+MainWarmup 10: 256 op, 738577800.00 ns, 2.8851 ms/op
+MainWarmup 11: 256 op, 712087900.00 ns, 2.7816 ms/op
+
+MainTarget  1: 256 op, 766382900.00 ns, 2.9937 ms/op
+MainTarget  2: 256 op, 674244100.00 ns, 2.6338 ms/op
+MainTarget  3: 256 op, 764491800.00 ns, 2.9863 ms/op
+MainTarget  4: 256 op, 771132500.00 ns, 3.0122 ms/op
+MainTarget  5: 256 op, 750807300.00 ns, 2.9328 ms/op
+MainTarget  6: 256 op, 750473800.00 ns, 2.9315 ms/op
+MainTarget  7: 256 op, 708656800.00 ns, 2.7682 ms/op
+MainTarget  8: 256 op, 753323400.00 ns, 2.9427 ms/op
+MainTarget  9: 256 op, 723214000.00 ns, 2.8251 ms/op
+MainTarget 10: 256 op, 716447000.00 ns, 2.7986 ms/op
+MainTarget 11: 256 op, 704819700.00 ns, 2.7532 ms/op
+MainTarget 12: 256 op, 755580200.00 ns, 2.9515 ms/op
+MainTarget 13: 256 op, 742238300.00 ns, 2.8994 ms/op
+MainTarget 14: 256 op, 722228400.00 ns, 2.8212 ms/op
+MainTarget 15: 256 op, 742716600.00 ns, 2.9012 ms/op
+MainTarget 16: 256 op, 696907800.00 ns, 2.7223 ms/op
+MainTarget 17: 256 op, 756026900.00 ns, 2.9532 ms/op
+MainTarget 18: 256 op, 729252500.00 ns, 2.8486 ms/op
+MainTarget 19: 256 op, 801730300.00 ns, 3.1318 ms/op
+MainTarget 20: 256 op, 769757100.00 ns, 3.0069 ms/op
+MainTarget 21: 256 op, 921409900.00 ns, 3.5993 ms/op
+MainTarget 22: 256 op, 743480800.00 ns, 2.9042 ms/op
+MainTarget 23: 256 op, 711012500.00 ns, 2.7774 ms/op
+MainTarget 24: 256 op, 743858200.00 ns, 2.9057 ms/op
+MainTarget 25: 256 op, 711456000.00 ns, 2.7791 ms/op
+MainTarget 26: 256 op, 721202800.00 ns, 2.8172 ms/op
+MainTarget 27: 256 op, 696282200.00 ns, 2.7199 ms/op
+MainTarget 28: 256 op, 758648700.00 ns, 2.9635 ms/op
+MainTarget 29: 256 op, 751866900.00 ns, 2.9370 ms/op
+MainTarget 30: 256 op, 718253800.00 ns, 2.8057 ms/op
+MainTarget 31: 256 op, 711201800.00 ns, 2.7781 ms/op
+MainTarget 32: 256 op, 736087100.00 ns, 2.8753 ms/op
+MainTarget 33: 256 op, 703563000.00 ns, 2.7483 ms/op
+MainTarget 34: 256 op, 702686000.00 ns, 2.7449 ms/op
+MainTarget 35: 256 op, 707019500.00 ns, 2.7618 ms/op
+MainTarget 36: 256 op, 750748100.00 ns, 2.9326 ms/op
+MainTarget 37: 256 op, 702301600.00 ns, 2.7434 ms/op
+MainTarget 38: 256 op, 747234600.00 ns, 2.9189 ms/op
+MainTarget 39: 256 op, 709743900.00 ns, 2.7724 ms/op
+MainTarget 40: 256 op, 754427700.00 ns, 2.9470 ms/op
+MainTarget 41: 256 op, 771946100.00 ns, 3.0154 ms/op
+MainTarget 42: 256 op, 720309700.00 ns, 2.8137 ms/op
+MainTarget 43: 256 op, 685775500.00 ns, 2.6788 ms/op
+MainTarget 44: 256 op, 741265500.00 ns, 2.8956 ms/op
+MainTarget 45: 256 op, 768197900.00 ns, 3.0008 ms/op
+MainTarget 46: 256 op, 709646400.00 ns, 2.7721 ms/op
+
+Result  1: 256 op, 766381070.00 ns, 2.9937 ms/op
+Result  2: 256 op, 674242270.00 ns, 2.6338 ms/op
+Result  3: 256 op, 764489970.00 ns, 2.9863 ms/op
+Result  4: 256 op, 771130670.00 ns, 3.0122 ms/op
+Result  5: 256 op, 750805470.00 ns, 2.9328 ms/op
+Result  6: 256 op, 750471970.00 ns, 2.9315 ms/op
+Result  7: 256 op, 708654970.00 ns, 2.7682 ms/op
+Result  8: 256 op, 753321570.00 ns, 2.9427 ms/op
+Result  9: 256 op, 723212170.00 ns, 2.8250 ms/op
+Result 10: 256 op, 716445170.00 ns, 2.7986 ms/op
+Result 11: 256 op, 704817870.00 ns, 2.7532 ms/op
+Result 12: 256 op, 755578370.00 ns, 2.9515 ms/op
+Result 13: 256 op, 742236470.00 ns, 2.8994 ms/op
+Result 14: 256 op, 722226570.00 ns, 2.8212 ms/op
+Result 15: 256 op, 742714770.00 ns, 2.9012 ms/op
+Result 16: 256 op, 696905970.00 ns, 2.7223 ms/op
+Result 17: 256 op, 756025070.00 ns, 2.9532 ms/op
+Result 18: 256 op, 729250670.00 ns, 2.8486 ms/op
+Result 19: 256 op, 801728470.00 ns, 3.1318 ms/op
+Result 20: 256 op, 769755270.00 ns, 3.0069 ms/op
+Result 21: 256 op, 743478970.00 ns, 2.9042 ms/op
+Result 22: 256 op, 711010670.00 ns, 2.7774 ms/op
+Result 23: 256 op, 743856370.00 ns, 2.9057 ms/op
+Result 24: 256 op, 711454170.00 ns, 2.7791 ms/op
+Result 25: 256 op, 721200970.00 ns, 2.8172 ms/op
+Result 26: 256 op, 696280370.00 ns, 2.7198 ms/op
+Result 27: 256 op, 758646870.00 ns, 2.9635 ms/op
+Result 28: 256 op, 751865070.00 ns, 2.9370 ms/op
+Result 29: 256 op, 718251970.00 ns, 2.8057 ms/op
+Result 30: 256 op, 711199970.00 ns, 2.7781 ms/op
+Result 31: 256 op, 736085270.00 ns, 2.8753 ms/op
+Result 32: 256 op, 703561170.00 ns, 2.7483 ms/op
+Result 33: 256 op, 702684170.00 ns, 2.7449 ms/op
+Result 34: 256 op, 707017670.00 ns, 2.7618 ms/op
+Result 35: 256 op, 750746270.00 ns, 2.9326 ms/op
+Result 36: 256 op, 702299770.00 ns, 2.7434 ms/op
+Result 37: 256 op, 747232770.00 ns, 2.9189 ms/op
+Result 38: 256 op, 709742070.00 ns, 2.7724 ms/op
+Result 39: 256 op, 754425870.00 ns, 2.9470 ms/op
+Result 40: 256 op, 771944270.00 ns, 3.0154 ms/op
+Result 41: 256 op, 720307870.00 ns, 2.8137 ms/op
+Result 42: 256 op, 685773670.00 ns, 2.6788 ms/op
+Result 43: 256 op, 741263670.00 ns, 2.8956 ms/op
+Result 44: 256 op, 768196070.00 ns, 3.0008 ms/op
+Result 45: 256 op, 709644570.00 ns, 2.7720 ms/op
+GC:  9 9 9 322938496 256
+
+
+Mean = 2.8627 ms, StdErr = 0.0161 ms (0.56%); N = 45, StdDev = 0.1079 ms
+Min = 2.6338 ms, Q1 = 2.7722 ms, Median = 2.8753 ms, Q3 = 2.9448 ms, Max = 3.1318 ms
+IQR = 0.1726 ms, LowerFence = 2.5134 ms, UpperFence = 3.2037 ms
+ConfidenceInterval = [2.8060 ms; 2.9195 ms] (CI 99.9%), Margin = 0.0567 ms (1.98% of Mean)
+Skewness = 0.1, Kurtosis = 2.29
+
+
+// **************************
+// Benchmark: TagHelperSerializationBenchmark.'Razor TagHelper Deserialization': Job-MDDNRO(Toolchain=InProcessToolchain, RunStrategy=Throughput)
+// *** Execute ***
+// Launch: 1 / 1
+
+// Benchmark Process Environment Information:
+// Runtime=.NET Core 5.0.0-preview.6.20305.6 (CoreCLR 5.0.20.30506, CoreFX 5.0.20.30506), 64bit RyuJIT
+// GC=Concurrent Server
+// Job: Job-MDDNRO(Toolchain=InProcessToolchain, RunStrategy=Throughput)
+
+Pilot  1: 16 op, 174118900.00 ns, 10.8824 ms/op
+Pilot  2: 32 op, 349503100.00 ns, 10.9220 ms/op
+Pilot  3: 64 op, 712945100.00 ns, 11.1398 ms/op
+
+IdleWarmup  1: 64 op, 900.00 ns, 14.0625 ns/op
+IdleWarmup  2: 64 op, 700.00 ns, 10.9375 ns/op
+IdleWarmup  3: 64 op, 500.00 ns, 7.8125 ns/op
+IdleWarmup  4: 64 op, 1900.00 ns, 29.6875 ns/op
+IdleWarmup  5: 64 op, 600.00 ns, 9.3750 ns/op
+IdleWarmup  6: 64 op, 1800.00 ns, 28.1250 ns/op
+IdleWarmup  7: 64 op, 600.00 ns, 9.3750 ns/op
+
+IdleTarget  1: 64 op, 2000.00 ns, 31.2500 ns/op
+IdleTarget  2: 64 op, 900.00 ns, 14.0625 ns/op
+IdleTarget  3: 64 op, 900.00 ns, 14.0625 ns/op
+IdleTarget  4: 64 op, 500.00 ns, 7.8125 ns/op
+IdleTarget  5: 64 op, 1200.00 ns, 18.7500 ns/op
+IdleTarget  6: 64 op, 500.00 ns, 7.8125 ns/op
+IdleTarget  7: 64 op, 1900.00 ns, 29.6875 ns/op
+IdleTarget  8: 64 op, 1800.00 ns, 28.1250 ns/op
+IdleTarget  9: 64 op, 600.00 ns, 9.3750 ns/op
+IdleTarget 10: 64 op, 1000.00 ns, 15.6250 ns/op
+IdleTarget 11: 64 op, 600.00 ns, 9.3750 ns/op
+IdleTarget 12: 64 op, 700.00 ns, 10.9375 ns/op
+IdleTarget 13: 64 op, 500.00 ns, 7.8125 ns/op
+IdleTarget 14: 64 op, 900.00 ns, 14.0625 ns/op
+IdleTarget 15: 64 op, 900.00 ns, 14.0625 ns/op
+IdleTarget 16: 64 op, 900.00 ns, 14.0625 ns/op
+IdleTarget 17: 64 op, 2000.00 ns, 31.2500 ns/op
+IdleTarget 18: 64 op, 500.00 ns, 7.8125 ns/op
+IdleTarget 19: 64 op, 900.00 ns, 14.0625 ns/op
+IdleTarget 20: 64 op, 800.00 ns, 12.5000 ns/op
+
+MainWarmup  1: 64 op, 706813500.00 ns, 11.0440 ms/op
+MainWarmup  2: 64 op, 700768700.00 ns, 10.9495 ms/op
+MainWarmup  3: 64 op, 702638800.00 ns, 10.9787 ms/op
+MainWarmup  4: 64 op, 707644300.00 ns, 11.0569 ms/op
+MainWarmup  5: 64 op, 703505200.00 ns, 10.9923 ms/op
+MainWarmup  6: 64 op, 703369200.00 ns, 10.9901 ms/op
+MainWarmup  7: 64 op, 702841400.00 ns, 10.9819 ms/op
+MainWarmup  8: 64 op, 707102500.00 ns, 11.0485 ms/op
+MainWarmup  9: 64 op, 704922800.00 ns, 11.0144 ms/op
+
+MainTarget  1: 64 op, 702903800.00 ns, 10.9829 ms/op
+MainTarget  2: 64 op, 702452300.00 ns, 10.9758 ms/op
+MainTarget  3: 64 op, 703933200.00 ns, 10.9990 ms/op
+MainTarget  4: 64 op, 704200000.00 ns, 11.0031 ms/op
+MainTarget  5: 64 op, 700228100.00 ns, 10.9411 ms/op
+MainTarget  6: 64 op, 709545100.00 ns, 11.0866 ms/op
+MainTarget  7: 64 op, 702524100.00 ns, 10.9769 ms/op
+MainTarget  8: 64 op, 705940000.00 ns, 11.0303 ms/op
+MainTarget  9: 64 op, 701826600.00 ns, 10.9660 ms/op
+MainTarget 10: 64 op, 705280000.00 ns, 11.0200 ms/op
+MainTarget 11: 64 op, 703793700.00 ns, 10.9968 ms/op
+MainTarget 12: 64 op, 700766500.00 ns, 10.9495 ms/op
+MainTarget 13: 64 op, 703468700.00 ns, 10.9917 ms/op
+MainTarget 14: 64 op, 713600700.00 ns, 11.1500 ms/op
+MainTarget 15: 64 op, 699310100.00 ns, 10.9267 ms/op
+
+Result  1: 64 op, 702902800.00 ns, 10.9829 ms/op
+Result  2: 64 op, 702451300.00 ns, 10.9758 ms/op
+Result  3: 64 op, 703932200.00 ns, 10.9989 ms/op
+Result  4: 64 op, 704199000.00 ns, 11.0031 ms/op
+Result  5: 64 op, 700227100.00 ns, 10.9410 ms/op
+Result  6: 64 op, 709544100.00 ns, 11.0866 ms/op
+Result  7: 64 op, 702523100.00 ns, 10.9769 ms/op
+Result  8: 64 op, 705939000.00 ns, 11.0303 ms/op
+Result  9: 64 op, 701825600.00 ns, 10.9660 ms/op
+Result 10: 64 op, 705279000.00 ns, 11.0200 ms/op
+Result 11: 64 op, 703792700.00 ns, 10.9968 ms/op
+Result 12: 64 op, 700765500.00 ns, 10.9495 ms/op
+Result 13: 64 op, 703467700.00 ns, 10.9917 ms/op
+Result 14: 64 op, 699309100.00 ns, 10.9267 ms/op
+GC:  8 2 0 634433624 64
+
+
+Mean = 10.9890 ms, StdErr = 0.0108 ms (0.10%); N = 14, StdDev = 0.0404 ms
+Min = 10.9267 ms, Q1 = 10.9660 ms, Median = 10.9873 ms, Q3 = 11.0031 ms, Max = 11.0866 ms
+IQR = 0.0371 ms, LowerFence = 10.9104 ms, UpperFence = 11.0587 ms
+ConfidenceInterval = [10.9435 ms; 11.0346 ms] (CI 99.9%), Margin = 0.0455 ms (0.41% of Mean)
+Skewness = 0.66, Kurtosis = 3.17
+
+
+// ***** BenchmarkRunner: Finish  *****
+
+// * Export *
+  BenchmarkDotNet.Artifacts\results\TagHelperSerializationBenchmark-report-github.md
+
+// * Detailed results *
+TagHelperSerializationBenchmark.'Razor TagHelper Roundtrip Serialization': Job-MDDNRO(Toolchain=InProcessToolchain, RunStrategy=Throughput)
+Runtime = ; GC = 
+Mean = 13.8849 ms, StdErr = 0.0463 ms (0.33%); N = 15, StdDev = 0.1792 ms
+Min = 13.6220 ms, Q1 = 13.7012 ms, Median = 13.8649 ms, Q3 = 14.0413 ms, Max = 14.1900 ms
+IQR = 0.3401 ms, LowerFence = 13.1910 ms, UpperFence = 14.5514 ms
+ConfidenceInterval = [13.6933 ms; 14.0765 ms] (CI 99.9%), Margin = 0.1916 ms (1.38% of Mean)
+Skewness = 0.11, Kurtosis = 1.57
+
+
+TagHelperSerializationBenchmark.'Razor TagHelper Serialization': Job-MDDNRO(Toolchain=InProcessToolchain, RunStrategy=Throughput)
+Runtime = ; GC = 
+Mean = 2.8627 ms, StdErr = 0.0161 ms (0.56%); N = 45, StdDev = 0.1079 ms
+Min = 2.6338 ms, Q1 = 2.7722 ms, Median = 2.8753 ms, Q3 = 2.9448 ms, Max = 3.1318 ms
+IQR = 0.1726 ms, LowerFence = 2.5134 ms, UpperFence = 3.2037 ms
+ConfidenceInterval = [2.8060 ms; 2.9195 ms] (CI 99.9%), Margin = 0.0567 ms (1.98% of Mean)
+Skewness = 0.1, Kurtosis = 2.29
+
+
+TagHelperSerializationBenchmark.'Razor TagHelper Deserialization': Job-MDDNRO(Toolchain=InProcessToolchain, RunStrategy=Throughput)
+Runtime = ; GC = 
+Mean = 10.9890 ms, StdErr = 0.0108 ms (0.10%); N = 14, StdDev = 0.0404 ms
+Min = 10.9267 ms, Q1 = 10.9660 ms, Median = 10.9873 ms, Q3 = 11.0031 ms, Max = 11.0866 ms
+IQR = 0.0371 ms, LowerFence = 10.9104 ms, UpperFence = 11.0587 ms
+ConfidenceInterval = [10.9435 ms; 11.0346 ms] (CI 99.9%), Margin = 0.0455 ms (0.41% of Mean)
+Skewness = 0.66, Kurtosis = 3.17
+
+
+Total time: 00:01:27 (87.64 sec)
+
+// * Summary *
+
+BenchmarkDotNet=v0.10.13, OS=Windows 10.0.19041
+Intel Core i7-8700 CPU 3.20GHz (Coffee Lake), 1 CPU, 12 logical cores and 6 physical cores
+.NET Core SDK=5.0.100-preview.6.20310.4
+  [Host] : .NET Core 5.0.0-preview.6.20305.6 (CoreCLR 5.0.20.30506, CoreFX 5.0.20.30506), 64bit RyuJIT
+
+Toolchain=InProcessToolchain  RunStrategy=Throughput  
+
+                                    Method |      Mean |     Error |    StdDev |   Op/s |    Gen 0 |   Gen 1 |   Gen 2 | Allocated |
+------------------------------------------ |----------:|----------:|----------:|-------:|---------:|--------:|--------:|----------:|
+ 'Razor TagHelper Roundtrip Serialization' | 13.885 ms | 0.1916 ms | 0.1792 ms |  72.02 | 156.2500 | 93.7500 | 31.2500 |  10.66 MB |
+           'Razor TagHelper Serialization' |  2.863 ms | 0.0567 ms | 0.1079 ms | 349.32 |  35.1563 | 35.1563 | 35.1563 |    1.2 MB |
+         'Razor TagHelper Deserialization' | 10.989 ms | 0.0455 ms | 0.0404 ms |  91.00 | 125.0000 | 31.2500 |       - |   9.45 MB |
+
+// * Legends *
+  Mean      : Arithmetic mean of all measurements
+  Error     : Half of 99.9% confidence interval
+  StdDev    : Standard deviation of all measurements
+  Op/s      : Operation per second
+  Gen 0     : GC Generation 0 collects per 1k Operations
+  Gen 1     : GC Generation 1 collects per 1k Operations
+  Gen 2     : GC Generation 2 collects per 1k Operations
+  Allocated : Allocated memory per single operation (managed only, inclusive, 1KB = 1024B)
+  1 ms      : 1 Millisecond (0.001 sec)
+
+// * Diagnostic Output - MemoryDiagnoser *
+
+
+// ***** BenchmarkRunner: End *****
+// * Artifacts cleanup *
