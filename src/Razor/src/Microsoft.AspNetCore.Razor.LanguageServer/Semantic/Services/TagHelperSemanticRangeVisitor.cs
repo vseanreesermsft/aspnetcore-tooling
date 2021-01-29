@@ -139,6 +139,7 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer.Semantic
         public override void VisitCSharpStatementBody(CSharpStatementBodySyntax node)
         {
             AddSemanticRange(node.OpenBrace, RazorSemanticTokensLegend.RazorTransition);
+            AddSemanticRange(node.CSharpCode, RazorSemanticTokensLegend.RazorCodeBackground);
             Visit(node.CSharpCode);
             AddSemanticRange(node.CloseBrace, RazorSemanticTokensLegend.RazorTransition);
         }

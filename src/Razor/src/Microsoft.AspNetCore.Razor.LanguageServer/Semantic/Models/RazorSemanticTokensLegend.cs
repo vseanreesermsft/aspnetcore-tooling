@@ -19,6 +19,7 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer.Semantic.Models
         private const string RazorCommentString = "razorComment";
         private const string RazorCommentTransitionString = "razorCommentTransition";
         private const string RazorCommentStarString = "razorCommentStar";
+        private const string RazorCodeBackgroundString = "razorCodeBackground";
 
         private const string MarkupTagDelimiterString = "markupTagDelimiter";
         private const string MarkupOperatorString = "markupOperator";
@@ -48,6 +49,7 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer.Semantic.Models
         public static int MarkupTextLiteral => TokenTypesLegend[MarkupTextLiteralString];
         public static int MarkupCommentPunctuation => TokenTypesLegend[MarkupCommentPunctuationString];
         public static int MarkupComment => TokenTypesLegend[MarkupCommentString];
+        public static int RazorCodeBackground => TokenTypesLegend[RazorCodeBackgroundString];
 
         public static int CSharpKeyword => TokenTypesLegend["keyword"];
         public static int CSharpVariable => TokenTypesLegend["variable"];
@@ -146,6 +148,7 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer.Semantic.Models
             MarkupCommentPunctuationString,
             MarkupCommentString,
             MarkupAttributeValueString,
+            RazorCodeBackgroundString,
         };
 
         private static readonly string[] _tokenModifiers = new string[] {
