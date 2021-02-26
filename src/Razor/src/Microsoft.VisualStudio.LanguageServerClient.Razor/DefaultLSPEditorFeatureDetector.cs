@@ -110,16 +110,16 @@ namespace Microsoft.VisualStudio.LanguageServerClient.Razor
             if (IsLiveShareHost())
             {
                 // Placeholder for when we turn on LiveShare support by default
-                return false;
+                return true;
             }
 
             if (IsLiveShareGuest())
             {
                 // Placeholder for when we turn on LiveShare support by default
-                return false;
+                return true;
             }
 
-            return false;
+            return true;
         }
 
         // Private protected virtual for testing
