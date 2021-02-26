@@ -90,7 +90,7 @@ namespace Microsoft.VisualStudio.LanguageServerClient.Razor
             var result = featureDetector.IsLSPEditorAvailable("testMoniker", hierarchy: null);
 
             // Assert
-            Assert.False(result);
+            Assert.True(result);
         }
 
         [Fact]
@@ -107,7 +107,7 @@ namespace Microsoft.VisualStudio.LanguageServerClient.Razor
             var result = featureDetector.IsLSPEditorAvailable("testMoniker", hierarchy: null);
 
             // Assert
-            Assert.False(result);
+            Assert.True(result);
         }
 
         [Fact]
