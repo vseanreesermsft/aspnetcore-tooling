@@ -110,7 +110,7 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer
                     }
                     var hostDocumentVersion = nullableHostDocumentVersion.Value;
 
-                    _generatedDocumentPublisher.PublishCSharp(filePath, args.NewText, hostDocumentVersion);
+                    //_generatedDocumentPublisher.PublishCSharp(filePath, args.NewText, hostDocumentVersion);
                 }, CancellationToken.None, TaskCreationOptions.None, _foregroundDispatcher.ForegroundScheduler);
             };
 
@@ -135,7 +135,7 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer
                     }
                     var hostDocumentVersion = nullableHostDocumentVersion.Value;
 
-                    _generatedDocumentPublisher.PublishHtml(filePath, args.NewText, hostDocumentVersion);
+                    //_generatedDocumentPublisher.PublishHtml(filePath, args.NewText, hostDocumentVersion);
                 }, CancellationToken.None, TaskCreationOptions.None, _foregroundDispatcher.ForegroundScheduler);
             };
 

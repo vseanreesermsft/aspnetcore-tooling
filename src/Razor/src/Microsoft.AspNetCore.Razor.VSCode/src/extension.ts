@@ -105,11 +105,11 @@ export async function activate(vscodeType: typeof vscodeapi, context: ExtensionC
                 documentManager,
                 languageServiceClient,
                 logger);
-            const hoverProvider = new RazorHoverProvider(
-                documentSynchronizer,
-                documentManager,
-                languageServiceClient,
-                logger);
+            // const hoverProvider = new RazorHoverProvider(
+            //     documentSynchronizer,
+            //     documentManager,
+            //     languageServiceClient,
+            //     logger);
             const codeLensProvider = new RazorCodeLensProvider(
                 documentSynchronizer,
                 documentManager,
@@ -145,9 +145,9 @@ export async function activate(vscodeType: typeof vscodeapi, context: ExtensionC
                 vscodeType.languages.registerImplementationProvider(
                     RazorLanguage.id,
                     implementationProvider),
-                vscodeType.languages.registerHoverProvider(
-                    RazorLanguage.documentSelector,
-                    hoverProvider),
+                // vscodeType.languages.registerHoverProvider(
+                //     RazorLanguage.documentSelector,
+                //     hoverProvider),
                 vscodeType.languages.registerReferenceProvider(
                     RazorLanguage.id,
                     referenceProvider),
