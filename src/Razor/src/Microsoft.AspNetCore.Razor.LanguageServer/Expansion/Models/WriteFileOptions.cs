@@ -3,16 +3,16 @@
 
 namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion.Models
 {
-    internal abstract class WriteFileOptions
+    internal class WriteFileOptions
     {
         /**
          * If a new file should be created.
          */
-        public abstract bool create { get; }
+        public bool Create { get; set; }
 
         /**
          * If a pre-existing file should be overwritten.
          */
-        public abstract bool overwrite { get; }
+        public bool Overwrite { get; set; }
     }
 }

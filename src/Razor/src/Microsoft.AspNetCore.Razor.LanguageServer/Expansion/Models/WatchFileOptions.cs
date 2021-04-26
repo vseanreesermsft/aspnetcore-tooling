@@ -3,16 +3,16 @@
 
 namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion.Models
 {
-    internal abstract class WatchFileOptions
+    internal class WatchFileOptions
     {
         /**
          * If a folder should be recursively subscribed to
          */
-        public abstract bool recursive { get; }
+        public bool Recursive { get; set; }
 
         /**
          * Folders or files to exclude from being watched.
          */
-        public abstract string[] excludes { get; }
+        public string[] Excludes { get; set; }
     }
 }

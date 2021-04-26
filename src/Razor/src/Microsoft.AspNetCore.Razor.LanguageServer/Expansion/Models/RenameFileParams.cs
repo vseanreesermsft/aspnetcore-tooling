@@ -6,21 +6,21 @@ using MediatR;
 
 namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion.Models
 {
-    internal abstract class RenameFileParams : IRequest
+    internal class RenameFileParams : IRequest
     {
         /**
          * The existing file.
          */
-        public abstract Uri OldUri { get; }
+        public Uri OldUri { get; set; }
 
         /**
          * The new location.
          */
-        public abstract Uri NewUri { get; }
+        public Uri NewUri { get; set; }
 
         /**
          * Defines if existing files should be overwritten.
          */
-        public abstract RenameFileOptions options { get; }
+        public RenameFileOptions Options { get; set; }
     }
 }

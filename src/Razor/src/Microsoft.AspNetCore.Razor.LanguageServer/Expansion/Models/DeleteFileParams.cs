@@ -6,16 +6,16 @@ using MediatR;
 
 namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion.Models
 {
-    internal abstract class DeleteFileParams : IRequest
+    internal class DeleteFileParams : IRequest
     {
         /**
          * The uri of the file or folder to delete
          */
-        public abstract Uri Uri { get; }
+        public Uri Uri { get; set; }
 
         /**
          * Defines if deletion of folders is recursive.
          */
-        public abstract DeleteFileOptions options { get; }
+        public DeleteFileOptions Options { get; set; }
     }
 }

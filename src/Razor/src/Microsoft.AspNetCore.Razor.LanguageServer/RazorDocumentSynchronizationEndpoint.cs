@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Razor.LanguageServer.Expansion;
 using Microsoft.AspNetCore.Razor.LanguageServer.ProjectSystem;
 using Microsoft.CodeAnalysis.Razor;
 using Microsoft.CodeAnalysis.Text;
@@ -25,11 +26,13 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer
         private readonly ForegroundDispatcher _foregroundDispatcher;
         private readonly DocumentResolver _documentResolver;
         private readonly RazorProjectService _projectService;
+        private readonly VirtualDocumentManager _virtualDocumentManager;
 
         public RazorDocumentSynchronizationEndpoint(
             ForegroundDispatcher foregroundDispatcher,
             DocumentResolver documentResolver,
             RazorProjectService projectService,
+            VirtualDocumentManager virtualDocumentManager,
             ILoggerFactory loggerFactory)
         {
             if (foregroundDispatcher == null)
@@ -47,6 +50,11 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer
                 throw new ArgumentNullException(nameof(projectService));
             }
 
+            if (virtualDocumentManager is null)
+            {
+                throw new ArgumentNullException(nameof(virtualDocumentManager));
+            }
+
             if (loggerFactory == null)
             {
                 throw new ArgumentNullException(nameof(loggerFactory));
@@ -55,6 +63,7 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer
             _foregroundDispatcher = foregroundDispatcher;
             _documentResolver = documentResolver;
             _projectService = projectService;
+            _virtualDocumentManager = virtualDocumentManager;
             _logger = loggerFactory.CreateLogger<RazorDocumentSynchronizationEndpoint>();
         }
 
@@ -104,11 +113,15 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer
                 throw new InvalidOperationException("Provided version should not be null.");
             }
 
+            var textDocumentPath = notification.TextDocument.Uri.GetAbsoluteOrUNCPath();
+
             await Task.Factory.StartNew(
-                () => _projectService.OpenDocument(notification.TextDocument.Uri.GetAbsoluteOrUNCPath(), sourceText, notification.TextDocument.Version.Value),
+                () => _projectService.OpenDocument(textDocumentPath, sourceText, notification.TextDocument.Version.Value),
                 CancellationToken.None,
                 TaskCreationOptions.None,
-                _foregroundDispatcher.ForegroundScheduler);
+                _foregroundDispatcher.ForegroundScheduler).ConfigureAwait(false);
+
+            _ = _virtualDocumentManager.InitializeVirtualDocumentsAsync(textDocumentPath, token);
 
             return Unit.Value;
         }

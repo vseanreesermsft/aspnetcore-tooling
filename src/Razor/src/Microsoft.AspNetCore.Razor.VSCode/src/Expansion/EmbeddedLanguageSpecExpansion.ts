@@ -23,7 +23,14 @@ export class EmbeddedLanguageSpecExpansion implements vscode.Disposable {
         this.fileSystemSpecExpansion.register();
         this.serverClient.onRequest(
             'textDocument/open',
-            async openTextDocumentParameters => vscode.workspace.openTextDocument(openTextDocumentParameters.textDocument.uri));
+            async openTextDocumentParameters => {
+                try {
+                    const uri = vscode.Uri.parse(openTextDocumentParameters.textDocument.uri);
+                    await vscode.workspace.openTextDocument(uri)
+                } catch (error) {
+                    throw error;
+                }
+            });
 
         this.serverClient.onRequest(
             'textDocument/close',

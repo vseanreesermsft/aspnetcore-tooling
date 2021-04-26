@@ -8,11 +8,11 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion.Models
     /**
      * A notification to signal an unsubscribe from a corresponding [watch](#watch) request.
      */
-    internal abstract class StopWatchingParams : IRequest
+    internal class StopWatchingParams : IRequest
     {
         /**
          * The subscription id.
          */
-        public abstract string subscriptionId { get; }
+        public string SubscriptionId { get; set; }
     }
 }

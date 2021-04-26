@@ -3,11 +3,11 @@
 
 namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion.Models
 {
-    internal abstract class RenameFileOptions
+    internal class RenameFileOptions
     {
         /**
          * If existing files should be overwritten.
          */
-        public abstract bool overwrite { get; }
+        public bool Overwrite { get; set; }
     }
 }

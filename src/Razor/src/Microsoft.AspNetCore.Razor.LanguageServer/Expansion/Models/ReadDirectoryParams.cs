@@ -6,11 +6,11 @@ using MediatR;
 
 namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion.Models
 {
-    internal abstract class ReadDirectoryParams : IRequest<ReadDirectoryResponse>
+    internal class ReadDirectoryParams : IRequest<ReadDirectoryResponse>
     {
         /**
          * The uri of the folder.
          */
-        public abstract Uri Uri { get; }
+        public Uri Uri { get; set; }
     }
 }

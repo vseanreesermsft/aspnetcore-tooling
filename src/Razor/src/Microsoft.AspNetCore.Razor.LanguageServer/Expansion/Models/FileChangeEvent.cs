@@ -8,16 +8,16 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion.Models
     /**
      * The event filesystem providers must use to signal a file change.
      */
-    internal abstract class FileChangeEvent
+    internal class FileChangeEvent
     {
         /**
          * The type of change.
          */
-        public abstract Uri Uri { get; }
+        public Uri Uri { get; set; }
 
         /**
          * The uri of the file that has changed.
          */
-        public abstract FileChangeType type { get; }
+        public FileChangeType Type { get; set; }
     }
 }

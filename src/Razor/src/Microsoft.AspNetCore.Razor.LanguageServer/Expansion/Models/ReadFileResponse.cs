@@ -3,11 +3,11 @@
 
 namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion.Models
 {
-    internal abstract class ReadFileResponse
+    internal class ReadFileResponse
     {
         /**
          * The entire contents of the file `base64` encoded.
          */
-        public abstract string content { get; }
+        public string Content { get; set; }
     }
 }

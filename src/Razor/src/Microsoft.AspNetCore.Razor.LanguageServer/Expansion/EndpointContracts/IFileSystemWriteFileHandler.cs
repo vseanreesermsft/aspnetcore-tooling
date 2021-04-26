@@ -4,10 +4,10 @@
 using Microsoft.AspNetCore.Razor.LanguageServer.Expansion.Models;
 using OmniSharp.Extensions.JsonRpc;
 
-namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion.Handlers
+namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion.EndpointContracts
 {
-    [Serial, Method("fileSystem/rename", Direction.ClientToServer)]
-    internal interface IFileSystemRenameHandler : IJsonRpcRequestHandler<RenameFileParams>
+    [Serial, Method("fileSystem/writeFile", Direction.ClientToServer)]
+    internal interface IFileSystemWriteFileHandler : IJsonRpcRequestHandler<WriteFileParams>
     {
     }
 }

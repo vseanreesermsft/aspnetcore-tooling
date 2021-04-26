@@ -4,7 +4,7 @@
 using Microsoft.AspNetCore.Razor.LanguageServer.Expansion.Models;
 using OmniSharp.Extensions.JsonRpc;
 
-namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion.Handlers
+namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion.EndpointContracts
 {
     [Serial, Method("fileSystem/createDirectory", Direction.ClientToServer)]
     internal interface IFileSystemCreateDirectoryHandler : IJsonRpcRequestHandler<CreateDirectoryParams>

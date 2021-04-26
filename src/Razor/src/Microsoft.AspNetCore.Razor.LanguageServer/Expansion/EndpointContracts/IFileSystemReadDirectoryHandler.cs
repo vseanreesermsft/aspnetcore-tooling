@@ -4,10 +4,10 @@
 using Microsoft.AspNetCore.Razor.LanguageServer.Expansion.Models;
 using OmniSharp.Extensions.JsonRpc;
 
-namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion.Handlers
+namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion.EndpointContracts
 {
-    [Serial, Method("fileSystem/delete", Direction.ClientToServer)]
-    internal interface IFileSystemDeleteHandler : IJsonRpcRequestHandler<DeleteFileParams>
+    [Serial, Method("fileSystem/readDirectory", Direction.ClientToServer)]
+    internal interface IFileSystemReadDirectoryHandler : IJsonRpcRequestHandler<ReadDirectoryParams, ReadDirectoryResponse>
     {
     }
 }

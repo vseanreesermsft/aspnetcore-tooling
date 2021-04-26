@@ -4,10 +4,10 @@
 using Microsoft.AspNetCore.Razor.LanguageServer.Expansion.Models;
 using OmniSharp.Extensions.JsonRpc;
 
-namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion.Handlers
+namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion.EndpointContracts
 {
-    [Serial, Method("fileSystem/stat", Direction.ClientToServer)]
-    internal interface IFileSystemStatHandler : IJsonRpcRequestHandler<FileStatParams, FileStatResponse>
+    [Serial, Method("fileSystem/readFile", Direction.ClientToServer)]
+    internal interface IFileSystemReadFileHandler : IJsonRpcRequestHandler<ReadFileParams, ReadFileResponse>
     {
     }
 }

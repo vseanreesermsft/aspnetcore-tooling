@@ -5,11 +5,11 @@ using System.Collections.Generic;
 
 namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion.Models
 {
-    internal abstract class ReadDirectoryResponse
+    internal class ReadDirectoryResponse
     {
         /**
          * An array of nodes that represent the directories children.
          */
-        public abstract IReadOnlyList<DirectoryChild> children { get; }
+        public IReadOnlyList<DirectoryChild> Children { get; set; }
     }
 }

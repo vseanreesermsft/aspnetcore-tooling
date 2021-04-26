@@ -37,7 +37,9 @@ export class FileSystemSpecExpansion implements vscode.Disposable {
     public register() {
     }
 
-    dispose() {
-        this.fileSystemRegistration?.dispose();
+    public dispose() {
+        if (this.fileSystemRegistration) {
+            this.fileSystemRegistration.dispose();
+        }
     }
 }

@@ -6,18 +6,18 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion.Models
     /**
      * A name/type item that represents a directory child node.
      */
-    internal abstract class DirectoryChild
+    internal class DirectoryChild
     {
         /**
          * The name of the node, e.g. a filename or directory name.
          */
-        public abstract string name { get; }
+        public string Name { get; set; }
 
         /**
          * The type of the file, e.g. is a regular file, a directory, or symbolic link to a file/directory.
          *
          * *Note:* This value might be a bitmask, e.g. `FileType.File | FileType.SymbolicLink`.
          */
-        public abstract FileType type { get; }
+        public FileType Type { get; set; }
     }
 }

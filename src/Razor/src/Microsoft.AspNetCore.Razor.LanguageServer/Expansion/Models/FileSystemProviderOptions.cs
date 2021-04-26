@@ -3,21 +3,21 @@
 
 namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion.Models
 {
-    internal abstract class FileSystemProviderOptions
+    internal class FileSystemProviderOptions
     {
         /**
          * The uri-scheme the provider registers for
          */
-        public abstract string Scheme { get; }
+        public string Scheme { get; set; }
 
         /**
          * Whether or not the file system is case sensitive.
          */
-        public abstract bool? IsCaseSensitive { get; }
+        public bool? IsCaseSensitive { get; set; }
 
         /**
          * Whether or not the file system is readonly.
          */
-        public abstract bool? IsReadonly { get; }
+        public bool? IsReadonly { get; set; }
     }
 }

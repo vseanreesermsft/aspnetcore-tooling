@@ -50,7 +50,9 @@ export class RazorLanguageServerClient implements vscode.Disposable {
     }
 
     public get serverCapabilities() : ServerCapabilities | undefined {
-        return this.client.initializeResult?.capabilities;
+        if (this.client.initializeResult) {
+            return this.client.initializeResult.capabilities
+        }
     }
 
     public updateTraceLevel() {

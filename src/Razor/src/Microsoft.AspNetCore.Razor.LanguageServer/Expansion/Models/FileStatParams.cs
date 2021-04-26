@@ -3,14 +3,15 @@
 
 using System;
 using MediatR;
+using OmniSharp.Extensions.LanguageServer.Protocol;
 
 namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion.Models
 {
-    internal abstract class FileStatParams : IRequest<FileStatResponse>
+    internal class FileStatParams : IRequest<FileStatResponse>
     {
         /**
          * The uri to retrieve metadata about.
          */
-        public abstract Uri Uri { get; }
+        public DocumentUri Uri { get; set; }
     }
 }

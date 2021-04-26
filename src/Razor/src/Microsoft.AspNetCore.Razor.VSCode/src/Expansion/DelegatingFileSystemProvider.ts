@@ -3,23 +3,24 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 
+import { RazorLanguageServerClient } from '../RazorLanguageServerClient';
+import * as expansionTypes from './EmbeddedLanguageSpecExpansionTypes';
 import * as vscode from 'vscode';
 import { ResponseError } from 'vscode-languageclient';
-import * as expansionTypes from './EmbeddedLanguageSpecExpansionTypes';
-import { RazorLanguageServerClient } from '../RazorLanguageServerClient';
 
 export class DelegatingFileSystemProvider implements vscode.FileSystemProvider {
-    private _onDidChangeEmitter = new vscode.EventEmitter<vscode.FileChangeEvent[]>();
+    private onDidChangeEmitter = new vscode.EventEmitter<vscode.FileChangeEvent[]>();
     private readonly watchedUris: { [uri: string]: string } = {};
-    private subscriptionCount: number = 0;
+    private subscriptionCount = 0;
+
+    public readonly onDidChangeFile: vscode.Event<vscode.FileChangeEvent[]> = this.onDidChangeEmitter.event;
 
     constructor(private readonly serverClient: RazorLanguageServerClient) {
         this.serverClient.onRequest('fileSystem/didChangeFile', (params: expansionTypes.DidChangeFileParams) => {
-            this._onDidChangeEmitter.fire(params.changes);
+            this.onDidChangeEmitter.fire(params.changes);
         });
     }
 
-    public readonly onDidChangeFile: vscode.Event<vscode.FileChangeEvent[]> = this._onDidChangeEmitter.event;
 
     public watch(uri: vscode.Uri, options: { recursive: boolean; excludes: string[]; }): vscode.Disposable {
         this.subscriptionCount++;
@@ -45,7 +46,7 @@ export class DelegatingFileSystemProvider implements vscode.FileSystemProvider {
     }
     public async stat(uri: vscode.Uri): Promise<vscode.FileStat> {
         const params: expansionTypes.FileStatParams = {
-            uri,
+            uri: uri.toString(),
         };
         try {
             const response = await this.serverClient.sendRequest<expansionTypes.FileStatResponse>('fileSystem/stat', params);
@@ -80,7 +81,7 @@ export class DelegatingFileSystemProvider implements vscode.FileSystemProvider {
     }
     public async readFile(uri: vscode.Uri): Promise<Uint8Array> {
         const params: expansionTypes.ReadFileParams = {
-            uri,
+            uri: uri.toString(),
         };
 
         try {

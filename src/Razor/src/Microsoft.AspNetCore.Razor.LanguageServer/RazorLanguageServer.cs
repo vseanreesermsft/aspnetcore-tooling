@@ -32,6 +32,7 @@ using Microsoft.AspNetCore.Razor.LanguageServer.Definition;
 using Microsoft.CodeAnalysis.Razor.Workspaces;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.AspNetCore.Razor.LanguageServer.Tooltip;
+using Microsoft.AspNetCore.Razor.LanguageServer.Expansion;
 
 namespace Microsoft.AspNetCore.Razor.LanguageServer
 {
@@ -128,11 +129,16 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer
                     .WithHandler<MonitorProjectConfigurationFilePathEndpoint>()
                     .WithHandler<RazorComponentRenameEndpoint>()
                     .WithHandler<RazorDefinitionEndpoint>()
+                    .WithHandler<RazorFileSystemEndpoint>()
                     .WithServices(services =>
                     {
                         services.AddLogging(builder => builder
                             .SetMinimumLevel(logLevel)
                             .AddLanguageProtocolLogging(logLevel));
+
+                        // Extensions
+                        services.AddSingleton<VirtualDocumentManager, DefaultVirtualDocumentManager>();
+                        services.AddSingleton<FileSystemProvider, RazorFileSystemProvider>();
 
                         services.AddSingleton<FilePathNormalizer>();
                         services.AddSingleton<ForegroundDispatcher, DefaultForegroundDispatcher>();

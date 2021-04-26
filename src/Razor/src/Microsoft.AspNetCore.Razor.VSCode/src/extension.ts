@@ -13,6 +13,7 @@ import { listenToConfigurationChanges } from './ConfigurationChangeListener';
 import { RazorCSharpFeature } from './CSharp/RazorCSharpFeature';
 import { ReportIssueCommand } from './Diagnostics/ReportIssueCommand';
 import { reportTelemetryForDocuments } from './DocumentTelemetryListener';
+import { EmbeddedLanguageSpecExpansion } from './Expansion/EmbeddedLanguageSpecExpansion';
 import { HostEventStream } from './HostEventStream';
 import { RazorHtmlFeature } from './Html/RazorHtmlFeature';
 import { IEventEmitterFactory } from './IEventEmitterFactory';
@@ -25,7 +26,7 @@ import { RazorDefinitionProvider } from './RazorDefinitionProvider';
 import { RazorDocumentManager } from './RazorDocumentManager';
 import { RazorDocumentSynchronizer } from './RazorDocumentSynchronizer';
 import { RazorFormattingFeature } from './RazorFormattingFeature';
-import { RazorHoverProvider } from './RazorHoverProvider';
+// import { RazorHoverProvider } from './RazorHoverProvider';
 import { RazorImplementationProvider } from './RazorImplementationProvider';
 import { RazorLanguage } from './RazorLanguage';
 import { RazorLanguageConfiguration } from './RazorLanguageConfiguration';
@@ -67,9 +68,11 @@ export async function activate(vscodeType: typeof vscodeapi, context: ExtensionC
         const reportIssueCommand = new ReportIssueCommand(vscodeType, documentManager, logger);
         const razorFormattingFeature = new RazorFormattingFeature(languageServerClient, documentManager, logger);
         const razorCodeActionRunner = new RazorCodeActionRunner(languageServerClient, logger);
+        const specExpansion = new EmbeddedLanguageSpecExpansion(languageServerClient)
 
         let documentSynchronizer: RazorDocumentSynchronizer;
         languageServerClient.onStart(async () => {
+            specExpansion.register();
             vscodeType.commands.executeCommand<void>('omnisharp.registerLanguageMiddleware', razorLanguageMiddleware);
             documentSynchronizer = new RazorDocumentSynchronizer(documentManager, logger);
             const provisionalCompletionOrchestrator = new ProvisionalCompletionOrchestrator(
@@ -196,12 +199,13 @@ export async function activate(vscodeType: typeof vscodeapi, context: ExtensionC
                 localRegistrations.push(vscodeType.languages.registerDocumentRangeSemanticTokensProvider(RazorLanguage.id, semanticTokenProvider, legend));
             }
 
+            await specExpansion.initialize();
             await documentManager.initialize();
         });
 
         await startLanguageServer(vscodeType, languageServerClient, logger, context);
 
-        context.subscriptions.push(languageServerClient, onStopRegistration, logger);
+        context.subscriptions.push(languageServerClient, onStopRegistration, logger, specExpansion);
     } catch (error) {
         logger.logError('Failed when activating Razor VSCode.', error);
         telemetryReporter.reportErrorOnActivation(error);

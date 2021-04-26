@@ -6,21 +6,21 @@ using MediatR;
 
 namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion.Models
 {
-    internal abstract class WatchParams : IRequest
+    internal class WatchParams : IRequest
     {
         /**
          * The uri of the file or folder to be watched.
          */
-        public abstract Uri Uri { get; }
+        public Uri Uri { get; set; }
 
         /**
          * The subscription ID to be used in order to stop watching the provided file or folder uri via the [StopWatching](#stopWatching) notification.
          */
-        public abstract string subscriptionId { get; }
+        public string SubscriptionId { get; set; }
 
         /**
          * Configures the watch
          */
-        public abstract WatchFileOptions options { get; }
+        public WatchFileOptions Options { get; set; }
     }
 }

@@ -70,7 +70,7 @@ export interface FileStatParams {
     /**
      * The uri to retrieve metadata about.
      */
-    uri: vscode.Uri;
+    uri: string;
 }
 
 export interface FileStatResponse {
@@ -237,7 +237,7 @@ export interface ReadFileParams {
     /**
      * The uri of the folder
      */
-    uri: vscode.Uri;
+    uri: string;
 }
 
 export interface ReadFileResponse {

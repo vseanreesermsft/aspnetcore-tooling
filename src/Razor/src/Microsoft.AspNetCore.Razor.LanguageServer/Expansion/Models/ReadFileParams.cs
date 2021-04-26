@@ -3,14 +3,15 @@
 
 using System;
 using MediatR;
+using OmniSharp.Extensions.LanguageServer.Protocol;
 
 namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion.Models
 {
-    internal abstract class ReadFileParams : IRequest<ReadFileResponse>
+    internal class ReadFileParams : IRequest<ReadFileResponse>
     {
         /**
          * The uri of the folder
          */
-        public abstract Uri Uri { get; }
+        public DocumentUri Uri { get; set; }
     }
 }

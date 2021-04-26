@@ -13,11 +13,11 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion.Models
      * correct `size` value. Otherwise there may be optimizations in place that will not show
      * the change in an editor for example.
      */
-    internal abstract class DidChangeFileParams
+    internal class DidChangeFileParams
     {
         /**
          * The change events.'
          */
-        public abstract FileChangeEvent[] changes { get; }
+        public FileChangeEvent[] Changes { get; set; }
     }
 }

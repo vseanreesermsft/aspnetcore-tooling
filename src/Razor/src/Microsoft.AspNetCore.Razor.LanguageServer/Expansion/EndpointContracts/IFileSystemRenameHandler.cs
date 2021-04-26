@@ -4,10 +4,10 @@
 using Microsoft.AspNetCore.Razor.LanguageServer.Expansion.Models;
 using OmniSharp.Extensions.JsonRpc;
 
-namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion.Handlers
+namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion.EndpointContracts
 {
-    [Serial, Method("fileSystem/watch", Direction.ClientToServer)]
-    internal interface IFileSystemWatchHandler : IJsonRpcNotificationHandler<WatchParams>
+    [Serial, Method("fileSystem/rename", Direction.ClientToServer)]
+    internal interface IFileSystemRenameHandler : IJsonRpcRequestHandler<RenameFileParams>
     {
     }
 }
