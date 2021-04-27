@@ -38,12 +38,30 @@ export class EmbeddedLanguageSpecExpansion implements vscode.Disposable {
 
         this.serverClient.onRequest(
             'textDocument/hover',
-            async hoverParams => vscode.commands.executeCommand('vscode.executeHoverProvider', hoverParams));
+            async hoverParams => {
+                try {
+                    const uri = vscode.Uri.parse(hoverParams.textDocument.uri);
+                    const position = new vscode.Position(hoverParams.position.line, hoverParams.position.character);
+                    const hoverModel = await vscode.commands.executeCommand('vscode.executeHoverProvider', uri, position);
+                    return hoverModel;
+                } catch (error) {
+                    console.log(error);
+                }
+            });
 
 
         this.serverClient.onRequest(
             'textDocument/completion',
-            async completionParams => vscode.commands.executeCommand('vscode.executeCompletionItemProvider', completionParams));
+            async completionParams => {
+                try {
+                    const uri = vscode.Uri.parse(completionParams.textDocument.uri);
+                    const position = new vscode.Position(completionParams.position.line, completionParams.position.character);
+                    const hoverModel = await vscode.commands.executeCommand('vscode.executeCompletionItemProvider', uri, position, completionParams.context.triggerCharacter);
+                    return hoverModel;
+                } catch (error) {
+                    console.log(error);
+                }
+            });
     }
 
     dispose() {

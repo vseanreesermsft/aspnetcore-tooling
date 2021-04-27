@@ -63,49 +63,50 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion
             return Unit.Task;
         }
 
-        public Task<FileStatResponse> Handle(FileStatParams request, CancellationToken cancellationToken)
-        {// TODO: NEED TO IMPLEMENT
+        public async Task<FileStatResponse> Handle(FileStatParams request, CancellationToken cancellationToken)
+        {
             var uri = request.Uri.ToUri();
-            var fileStat = _fileSystemProvider.Stat(uri);
+            var fileStat = await _fileSystemProvider.StatAsync(uri, cancellationToken).ConfigureAwait(false);
             var response = new FileStatResponse(fileStat);
-            return Task.FromResult(response);
+            return response;
         }
 
-        public Task<ReadDirectoryResponse> Handle(ReadDirectoryParams request, CancellationToken cancellationToken)
+        public async Task<ReadDirectoryResponse> Handle(ReadDirectoryParams request, CancellationToken cancellationToken)
         {
-            var children = _fileSystemProvider.ReadDirectory(request.Uri);
+            var children = await _fileSystemProvider.ReadDirectoryAsync(request.Uri, cancellationToken);
             var response = new ReadDirectoryResponse()
             {
                 Children = children,
             };
-            return Task.FromResult(response);
+            return response;
         }
 
-        public Task<Unit> Handle(CreateDirectoryParams request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(CreateDirectoryParams request, CancellationToken cancellationToken)
         {
-            _fileSystemProvider.CreateDirectory(request.Uri);
-            return Unit.Task;
+            await _fileSystemProvider.CreateDirectoryAsync(request.Uri, cancellationToken).ConfigureAwait(false);
+
+            return Unit.Value;
         }
 
-        public Task<Unit> Handle(WriteFileParams request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(WriteFileParams request, CancellationToken cancellationToken)
         {
             var base64Content = request.Content;
             var data = Convert.FromBase64String(base64Content);
             var content = Encoding.UTF8.GetString(data);
-            _fileSystemProvider.WriteFile(request.Uri, content, request.Options);
-            return Unit.Task;
+            await _fileSystemProvider.WriteFileAsync(request.Uri, content, request.Options, cancellationToken).ConfigureAwait(false);
+            return Unit.Value;
         }
 
-        public Task<Unit> Handle(DeleteFileParams request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteFileParams request, CancellationToken cancellationToken)
         {
-            _fileSystemProvider.Delete(request.Uri, request.Options);
-            return Unit.Task;
+            await _fileSystemProvider.DeleteAsync(request.Uri, request.Options, cancellationToken);
+            return Unit.Value;
         }
 
-        public Task<Unit> Handle(RenameFileParams request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(RenameFileParams request, CancellationToken cancellationToken)
         {
-            _fileSystemProvider.Rename(request.OldUri, request.NewUri, request.Options);
-            return Unit.Task;
+            await _fileSystemProvider.RenameAsync(request.OldUri, request.NewUri, request.Options, cancellationToken);
+            return Unit.Value;
         }
     }
 }

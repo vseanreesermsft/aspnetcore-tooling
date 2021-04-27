@@ -5,13 +5,13 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion
 {
     internal static class RazorServerLSPConstants
     {
-        public const string EmbeddedFileScheme = "embedded-razorContent";
+        public const string EmbeddedFileScheme = "virtualCSharp-razor";
 
         public const string CSHTMLFileExtension = ".cshtml";
 
         public const string RazorFileExtension = ".razor";
 
-        public const string VirtualCSharpFileNameSuffix = ".g.cs";
+        public const string VirtualCSharpFileNameSuffix = "__virtual.cs";
 
         public const string VirtualHtmlFileNameSuffix = "__virtual.html";
     }

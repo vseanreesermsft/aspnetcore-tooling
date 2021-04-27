@@ -99,10 +99,10 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion
 
         private async Task SendOpenTextDocumentAsync(string hostDocumentFilePath, string virtualFileSuffix, CancellationToken cancellationToken)
         {
-            var workspaceDirectory = _workspaceDirectoryPathResolver.Resolve();
-            var relativeHostDocumentFilePath = hostDocumentFilePath.Substring(workspaceDirectory.Length);
+            //var workspaceDirectory = _workspaceDirectoryPathResolver.Resolve();
+            //var relativeHostDocumentFilePath = hostDocumentFilePath.Substring(workspaceDirectory.Length);
             //var fileName = Path.GetFileName(relativeHostDocumentFilePath);
-            var csharpFilePath = relativeHostDocumentFilePath + virtualFileSuffix;
+            var csharpFilePath = "/" + hostDocumentFilePath + virtualFileSuffix;
             var csharpDocumentUri = new DocumentUri(RazorServerLSPConstants.EmbeddedFileScheme, authority: string.Empty, path: csharpFilePath, query: string.Empty, fragment: string.Empty);
             var openDocumentParams = new OpenTextDocumentParams()
             {
