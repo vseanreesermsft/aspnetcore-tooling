@@ -24,11 +24,13 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer.Hover
         private readonly ForegroundDispatcher _foregroundDispatcher;
         private readonly DocumentResolver _documentResolver;
         private readonly RazorHoverInfoService _hoverInfoService;
+        private readonly ClientNotifierServiceBase _languageServer;
 
         public RazorHoverEndpoint(
             ForegroundDispatcher foregroundDispatcher,
             DocumentResolver documentResolver,
             RazorHoverInfoService hoverInfoService,
+            ClientNotifierServiceBase languageServer,
             ILoggerFactory loggerFactory)
         {
             if (foregroundDispatcher is null)
@@ -46,6 +48,11 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer.Hover
                 throw new ArgumentNullException(nameof(hoverInfoService));
             }
 
+            if (languageServer is null)
+            {
+                throw new ArgumentNullException(nameof(languageServer));
+            }
+
             if (loggerFactory is null)
             {
                 throw new ArgumentNullException(nameof(loggerFactory));
@@ -54,6 +61,7 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer.Hover
             _foregroundDispatcher = foregroundDispatcher;
             _documentResolver = documentResolver;
             _hoverInfoService = hoverInfoService;
+            _languageServer = languageServer;
             _logger = loggerFactory.CreateLogger<RazorHoverEndpoint>();
         }
 
@@ -87,7 +95,10 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer.Hover
             var hostDocumentIndex = sourceText.Lines.GetPosition(linePosition);
             var location = new SourceLocation(hostDocumentIndex, (int)request.Position.Line, (int)request.Position.Character);
 
-            var hoverItem = _hoverInfoService.GetHoverInfo(codeDocument, location);
+            var isVSClient = _languageServer.ClientSettings.Capabilities is PlatformAgnosticClientCapabilities clientCapabilities &&
+                clientCapabilities.SupportsVisualStudioExtensions;
+
+            var hoverItem = _hoverInfoService.GetHoverInfo(codeDocument, location, isVSClient);
 
             _logger.LogTrace($"Found hover info items.");
 
@@ -98,7 +109,6 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer.Hover
         {
             _capability = capability;
         }
-
 
         public HoverRegistrationOptions GetRegistrationOptions()
         {
