@@ -137,7 +137,6 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer
                             .AddLanguageProtocolLogging(logLevel));
 
                         // Extensions
-                        services.AddSingleton<VirtualDocumentManager, DefaultVirtualDocumentManager>();
                         services.AddSingleton<FileSystemProvider, RazorFileSystemProvider>();
                         services.AddSingleton<ProjectSnapshotChangeTrigger>((services) => services.GetRequiredService<FileSystemProvider>());
 

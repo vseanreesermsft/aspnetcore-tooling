@@ -9,6 +9,7 @@ using MediatR;
 using Microsoft.AspNetCore.Razor.LanguageServer.Expansion;
 using Microsoft.AspNetCore.Razor.LanguageServer.ProjectSystem;
 using Microsoft.CodeAnalysis.Razor;
+using Microsoft.CodeAnalysis.Razor.Workspaces;
 using Microsoft.CodeAnalysis.Text;
 using Microsoft.Extensions.Logging;
 using OmniSharp.Extensions.LanguageServer.Protocol;
@@ -26,13 +27,13 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer
         private readonly ForegroundDispatcher _foregroundDispatcher;
         private readonly DocumentResolver _documentResolver;
         private readonly RazorProjectService _projectService;
-        private readonly VirtualDocumentManager _virtualDocumentManager;
+        private readonly GeneratedDocumentPublisher _generatedDocumentPublisher;
 
         public RazorDocumentSynchronizationEndpoint(
             ForegroundDispatcher foregroundDispatcher,
             DocumentResolver documentResolver,
             RazorProjectService projectService,
-            VirtualDocumentManager virtualDocumentManager,
+            GeneratedDocumentPublisher generatedDocumentPublisher,
             ILoggerFactory loggerFactory)
         {
             if (foregroundDispatcher == null)
@@ -50,9 +51,9 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer
                 throw new ArgumentNullException(nameof(projectService));
             }
 
-            if (virtualDocumentManager is null)
+            if (generatedDocumentPublisher is null)
             {
-                throw new ArgumentNullException(nameof(virtualDocumentManager));
+                throw new ArgumentNullException(nameof(generatedDocumentPublisher));
             }
 
             if (loggerFactory == null)
@@ -63,7 +64,7 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer
             _foregroundDispatcher = foregroundDispatcher;
             _documentResolver = documentResolver;
             _projectService = projectService;
-            _virtualDocumentManager = virtualDocumentManager;
+            _generatedDocumentPublisher = generatedDocumentPublisher;
             _logger = loggerFactory.CreateLogger<RazorDocumentSynchronizationEndpoint>();
         }
 
@@ -93,11 +94,14 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer
                 throw new InvalidOperationException("Provided version should not be null.");
             }
 
-            await Task.Factory.StartNew(
+            var updatedDocumentSnapshot = await Task.Factory.StartNew(
                 () => _projectService.UpdateDocument(document.FilePath, sourceText, notification.TextDocument.Version.Value),
                 CancellationToken.None,
                 TaskCreationOptions.None,
                 _foregroundDispatcher.ForegroundScheduler);
+
+            var codeDocument = await updatedDocumentSnapshot.GetGeneratedOutputAsync().ConfigureAwait(false);
+            _ = _generatedDocumentPublisher.PublishGeneratedDocumentsAsync(updatedDocumentSnapshot.FilePath, codeDocument, notification.TextDocument.Version.Value, token);
 
             return Unit.Value;
         }
@@ -115,13 +119,14 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer
 
             var textDocumentPath = notification.TextDocument.Uri.GetAbsoluteOrUNCPath();
 
-            await Task.Factory.StartNew(
+            var updatedDocumentSnapshot = await Task.Factory.StartNew(
                 () => _projectService.OpenDocument(textDocumentPath, sourceText, notification.TextDocument.Version.Value),
                 CancellationToken.None,
                 TaskCreationOptions.None,
                 _foregroundDispatcher.ForegroundScheduler).ConfigureAwait(false);
 
-            _ = _virtualDocumentManager.InitializeVirtualDocumentsAsync(textDocumentPath, token);
+            var codeDocument = await updatedDocumentSnapshot.GetGeneratedOutputAsync().ConfigureAwait(false);
+            _ = _generatedDocumentPublisher.PublishGeneratedDocumentsAsync(updatedDocumentSnapshot.FilePath, codeDocument, notification.TextDocument.Version.Value, token);
 
             return Unit.Value;
         }

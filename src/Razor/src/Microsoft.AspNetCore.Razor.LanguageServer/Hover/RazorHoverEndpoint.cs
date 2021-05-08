@@ -126,6 +126,12 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer.Hover
                 if (hoverModels != null && hoverModels.Length > 0)
                 {
                     hoverItem = hoverModels[0];
+
+                    if (hoverItem.Range != null &&
+                        _documentMappingService.TryMapFromProjectedDocumentRange(codeDocument, hoverItem.Range, out var mappedRange))
+                    {
+                        hoverItem.Range = mappedRange;
+                    }
                 }
             }
             else if (languageKind == RazorLanguageKind.Html)

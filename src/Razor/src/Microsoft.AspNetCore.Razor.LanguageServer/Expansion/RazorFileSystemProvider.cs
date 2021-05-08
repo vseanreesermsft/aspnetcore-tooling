@@ -16,18 +16,8 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer.Expansion
 {
     internal class RazorFileSystemProvider : FileSystemProvider
     {
-        private readonly VirtualDocumentManager _virtualDocumentManager;
         private Dictionary<string, File> _files = new Dictionary<string, File>(StringComparer.Ordinal);
 
-        public RazorFileSystemProvider(VirtualDocumentManager virtualDocumentManager)
-        {
-            if (virtualDocumentManager is null)
-            {
-                throw new ArgumentNullException(nameof(virtualDocumentManager));
-            }
-
-            _virtualDocumentManager = virtualDocumentManager;
-        }
         public override void Initialize(ProjectSnapshotManagerBase projectManager)
         {
             projectManager.Changed += ProjectManager_Changed;
