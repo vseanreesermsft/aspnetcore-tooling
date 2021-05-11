@@ -24,6 +24,32 @@ export class EmbeddedLanguageSpecExpansion implements vscode.Disposable {
     public register() {
         this.fileSystemSpecExpansion.register();
         this.serverClient.onRequest(
+            'workspace/applyEdit2',
+            async lspWorkspaceEditParams => {
+                try {
+                    var vscodeWorkspaceEdit = new vscode.WorkspaceEdit();
+                    for (const documentEdit of lspWorkspaceEditParams.edit.documentChanges) {
+                        const documentUri = vscode.Uri.parse(documentEdit.textDocument.uri);
+                        for (const edit of documentEdit.edits) {
+                            const editRange: vscode.Range = new vscode.Range(
+                                new vscode.Position(edit.range.start.line, edit.range.start.character),
+                                new vscode.Position(edit.range.end.line, edit.range.end.character));
+                            vscodeWorkspaceEdit.replace(documentUri, editRange, edit.newText);
+                        }
+                    }
+
+                    const applied = await vscode.workspace.applyEdit(vscodeWorkspaceEdit);
+                    if (!applied) {
+                        console.log('Failed to apply workspace edit');
+                    }
+                    return {
+                        applied,
+                    };
+                } catch (error) {
+                    throw error;
+                }
+            });
+        this.serverClient.onRequest(
             'textDocument/open',
             async openTextDocumentParameters => {
                 try {

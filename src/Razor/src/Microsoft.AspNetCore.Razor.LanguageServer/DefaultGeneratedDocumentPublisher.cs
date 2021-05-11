@@ -70,14 +70,14 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer
             // TODO: NOTHING IS SYNCHRONIZED AHHHH
 
             var shouldOpenDocument = !_publishedCSharpData.ContainsKey(filePath);
-            var workspaceChanges = new Dictionary<DocumentUri, IEnumerable<TextEdit>>();
+            var textDocumentEdits = new List<WorkspaceEditDocumentChange>();
 
             var csharpSourceText = codeDocument.GetCSharpSourceText();
             lock (_publishLock)
             {
                 var csharpTextChanges = PreparePublishCSharp(filePath, csharpSourceText, hostDocumentVersion);
                 var csharpFilePath = "/" + filePath + RazorServerLSPConstants.VirtualCSharpFileNameSuffix;
-                TryAddWorkspaceChange(csharpFilePath, csharpTextChanges, csharpSourceText, workspaceChanges);
+                TryAddDocumentEdit(csharpFilePath, csharpTextChanges, csharpSourceText, hostDocumentVersion, textDocumentEdits);
             }
 
             lock (_publishedHtmlData)
@@ -85,10 +85,10 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer
                 var htmlSourceText = codeDocument.GetHtmlSourceText();
                 var htmlTextChanges = PreparePublishHtml(filePath, htmlSourceText, hostDocumentVersion);
                 var htmlFilePath = "/" + filePath + RazorServerLSPConstants.VirtualHtmlFileNameSuffix;
-                TryAddWorkspaceChange(htmlFilePath, htmlTextChanges, htmlSourceText, workspaceChanges);
+                TryAddDocumentEdit(htmlFilePath, htmlTextChanges, htmlSourceText, hostDocumentVersion, textDocumentEdits);
             }
 
-            if (workspaceChanges.Count == 0)
+            if (textDocumentEdits.Count == 0)
             {
                 // No workspace edits, no need to do anything.
                 return;
@@ -105,22 +105,25 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer
             {
                 Edit = new WorkspaceEdit()
                 {
-                    Changes = workspaceChanges
+                    DocumentChanges = textDocumentEdits
                 },
             };
 
-            var request = _server.SendRequest("workspace/applyEdit", parameters);
+            var request = _server.SendRequest("workspace/applyEdit2", parameters);
             var response = await request.Returning<ApplyWorkspaceEditResponse>(cancellationToken);
             if (!response.Applied)
             {
+                Debugger.Launch();
+                Debugger.Break();
                 Debug.Fail("Failed to apply workspace Edit, uh oh!");
             }
 
-            static void TryAddWorkspaceChange(
+            static void TryAddDocumentEdit(
                 string filePath,
                 IReadOnlyList<TextChange> textChanges,
                 SourceText sourceText,
-                Dictionary<DocumentUri, IEnumerable<TextEdit>> workspaceChanges)
+                int hostDocumentVersion,
+                List<WorkspaceEditDocumentChange> documentEdits)
             {
                 if (textChanges is null || textChanges.Count == 0)
                 {
@@ -128,7 +131,16 @@ namespace Microsoft.AspNetCore.Razor.LanguageServer
                 }
 
                 var documentUri = new DocumentUri(RazorServerLSPConstants.EmbeddedFileScheme, authority: string.Empty, path: filePath, query: string.Empty, fragment: string.Empty);
-                workspaceChanges[documentUri] = textChanges.Select(change => change.AsTextEdit(sourceText));
+                var textEdits = textChanges.Select(change => change.AsTextEdit(sourceText));
+                documentEdits.Add(new TextDocumentEdit()
+                {
+                    Edits = new TextEditContainer(textEdits),
+                    TextDocument = new VersionedTextDocumentIdentifier()
+                    {
+                        Uri = documentUri,
+                        Version = hostDocumentVersion
+                    }
+                });
             }
         }
 

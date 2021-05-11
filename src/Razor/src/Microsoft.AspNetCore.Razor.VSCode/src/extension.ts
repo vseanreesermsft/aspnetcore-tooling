@@ -75,6 +75,7 @@ export async function activate(vscodeType: typeof vscodeapi, context: ExtensionC
             specExpansion.register();
             vscodeType.commands.executeCommand<void>('omnisharp.registerLanguageMiddleware', razorLanguageMiddleware);
             documentSynchronizer = new RazorDocumentSynchronizer(documentManager, logger);
+            const razorServerReadyHandler = new RazorServerReadyHandler(languageServerClient);
             const provisionalCompletionOrchestrator = new ProvisionalCompletionOrchestrator(
                 documentManager,
                 csharpFeature.projectionProvider,
@@ -85,7 +86,6 @@ export async function activate(vscodeType: typeof vscodeapi, context: ExtensionC
                 languageServerClient,
                 logger);
             const semanticTokenHandler = new SemanticTokensHandler(languageServerClient);
-            const razorServerReadyHandler = new RazorServerReadyHandler(languageServerClient);
 
             // const completionItemProvider = new RazorCompletionItemProvider(
             //     documentSynchronizer,
